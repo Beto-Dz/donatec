@@ -16,14 +16,18 @@
         android:layout_weight="1"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/navigator" />
+        app:navGraph="@navigation/navigator"
+        android:padding="15dp"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#7B2CBF"
+        android:background="@color/violeta_fuerte"
+        app:itemRippleColor="@color/naranja"
+        app:itemActiveIndicatorStyle="@color/naranja"
         app:menu="@menu/menu" />
 
 

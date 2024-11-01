@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigator"
+    app:startDestination="@id/inicio">
+
+    <fragment
+        android:id="@+id/inicio"
+        android:name="com.example.donatec.IncioFragment"
+        android:label="fragment_incio"
+        tools:layout="@layout/fragment_incio" />
+    <fragment
+        android:id="@+id/postulaciones"
+        android:name="com.example.donatec.PostulacionesFragment"
+        android:label="fragment_postulaciones"
+        tools:layout="@layout/fragment_postulaciones" />
+    <fragment
+        android:id="@+id/donativos"
+        android:name="com.example.donatec.DonativosFragment"
+        android:label="fragment_donativos"
+        tools:layout="@layout/fragment_donativos" />
+    <fragment
+        android:id="@+id/perfil"
+        android:name="com.example.donatec.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/inicio"
-        android:name="com.example.donatec.IncioFragment"
+        android:name="com.example.donatec.inicio.InicioFragment"
         android:label="fragment_incio"
-        tools:layout="@layout/fragment_incio" />
+        tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/postulaciones"
         android:name="com.example.donatec.PostulacionesFragment"

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/violeta_bajo"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        tools:context=".RegisterActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrate"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Llena adecuadamente el formulario para continuar"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <!--  formulario de registro  -->
+        <!--nombre-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Nombre(s)"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/perfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--apellido paterno-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Apellido paterno"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/perfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apellidoPaterno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--apellido paterno-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Apellido materno"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/perfil">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apellidoMaterno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- fecha nacimiento   -->
+        <EditText
+            android:id="@+id/fechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha de nacimiento"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte" />
+
+        <!-- sexo    -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sexo"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte">
+
+            <AutoCompleteTextView
+                android:id="@+id/sexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:inputType="none"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  nombre de usuario  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Nombre de usuario"
+            app:counterEnabled="true"
+            app:counterMaxLength="32"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/at">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  correo electronico  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Correo electrónico"
+            app:counterEnabled="true"
+            app:counterMaxLength="22"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/at">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/correoElectronico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  contraseña  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Contraseña"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/key">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="textPassword"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- numero telefonico   -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Número telefónico"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/hashtag">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/numeroTelefonico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  descripcion       -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Descripción sobre ti"
+            app:counterEnabled="true"
+            app:counterMaxLength="60"
+            app:errorEnabled="true"
+            app:helperText="Cantidad máxima de caracteres"
+            app:helperTextEnabled="true"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte"
+            app:startIconDrawable="@drawable/description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--  boton obtener ubicacion  -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/obtenerUbicacionButton"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/azul_marino"
+            android:text="Obtener ubicación"
+            android:textColor="@color/white"
+            app:icon="@drawable/map_pin"
+            app:iconTint="@color/white" />
+
+
+        <!-- estado        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado: "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No disponible"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- municipio        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Municipio: "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/municipio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No disponible"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registrarButton"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/violeta_fuerte"
+            android:text="Registrarme"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

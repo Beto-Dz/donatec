@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/violeta_ultra_bajo"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="25dp"
+    tools:context=".LoginActivity">
+
+    <!--  contenedor de imagen con bienvenida  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icono_app" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bienvenid@ a DonaTEC"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingresa tus credenciales para continuar"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <!--  correo  -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Correo electrónico"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:errorEnabled="true"
+        app:helperText="Cantidad máxima de caracteres"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/gris"
+        app:hintTextColor="@color/gris"
+        app:startIconDrawable="@drawable/at">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:shadowRadius="@integer/material_motion_duration_long_2"
+            android:textColor="@color/violeta_fuerte" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--  contraseña-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Contraseña"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:helperText="Cantidad máxima de caracteres"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/gris"
+        app:hintTextColor="@color/gris">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/violeta_fuerte" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--  botones  -->
+    <Button
+        android:id="@+id/ingresoButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/violeta_fuerte"
+        android:text="Ingresar"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/registroButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/violeta_fuerte"
+        android:text="Registrarme"
+        android:textColor="@color/white" />
+
+</LinearLayout>

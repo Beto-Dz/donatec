@@ -3,6 +3,7 @@ package com.example.donatec;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +23,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText etEmail, etPassword;
+    TextInputEditText email, password;
     private Button btnLogin, btnRegister;
     private SessionManager sessionManager;
-    private TextInputEditText textInputEditText;
+    private RequestQueue queue;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         // Inicializa el SessionManager
         sessionManager = new SessionManager(this);
 
+        // Inicializar la cola de solicitudes de Volley
+        queue = Volley.newRequestQueue(this);
+
         // Verifica si el usuario ya está logueado
         if (sessionManager.isLoggedIn()) {
             // Redirigir a MainActivity si ya está logueado
@@ -44,10 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        etPassword = findViewById(R.id.password);
+        // Inicializar los elementos de la vista relacionados con el login
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
         btnLogin = findViewById(R.id.ingresoButton);
         btnRegister = findViewById(R.id.registroButton);
 
+        // Configurar el evento de clic en los botones
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Configurar el evento de clic en el botón de registro
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,43 +74,58 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Método para realizar la solicitud de inicio de sesión
     private void login() {
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-
         // Aquí se debe realizar la solicitud a la API
-        String url = getString(R.string.api_base_url) + "/login";
+        String url = getString(R.string.api_base_url) + "login";
 
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("email", email);
-            jsonBody.put("password", password);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        // Crear un objeto UsuarioLogin con los datos ingresados por el usuario
+        UsuarioLogin usuarioLogin = new UsuarioLogin(email.getText().toString(), password.getText().toString());
+
+        // Validar los campos ingresados por el usuario
+        if (!usuarioLogin.validarCampos()) {
+            Toast.makeText(this, "Llena los campos correctamente", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, usuarioLogin.getJSON(),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Procesar la respuesta
                         try {
-                            if (response.getBoolean("success")) {
-                                sessionManager.setLogin(true);
+                            // Obtener el código de estado de la respuesta
+                            int codigo = response.getInt("code");
+                            if (codigo == 200) {
+
+                                JSONObject user = response.getJSONObject("user");
+                                int id_person = user.getInt("id_person");
+                                int id_account = user.getInt("id_account");
+                                String name = user.getString("name");
+                                String paternal_surname = user.getString("paternal_surname");
+                                String maternal_surname = user.getString("maternal_surname");
+                                String state_user = user.getString("state_user");
+                                int municipality_id = user.getInt("municipality_id");
+                                String username = user.getString("username");
+                                String email = user.getString("email");
+                                String token = response.getString("token");
+
+                                sessionManager.createLoginSession(true, id_person, id_account, name, paternal_surname, maternal_surname, state_user, municipality_id, username, email, token);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Toast.makeText(LoginActivity.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, "Error en la conexión", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
             }
         });
 

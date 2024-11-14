@@ -42,19 +42,20 @@
 
     </LinearLayout>
 
-    <!--  correo  -->
+    <!--  correo electronico  -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:hint="Correo electrónico"
         app:counterEnabled="true"
-        app:counterMaxLength="30"
+        app:counterMaxLength="22"
+        app:counterTextColor="@color/violeta_fuerte"
         app:errorEnabled="true"
         app:helperText="Cantidad máxima de caracteres"
         app:helperTextEnabled="true"
-        app:helperTextTextColor="@color/gris"
-        app:hintTextColor="@color/gris"
+        app:helperTextTextColor="@color/violeta_fuerte"
+        app:hintTextColor="@color/violeta_fuerte"
         app:startIconDrawable="@drawable/at">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -64,10 +65,9 @@
             android:background="@color/white"
             android:shadowRadius="@integer/material_motion_duration_long_2"
             android:textColor="@color/violeta_fuerte" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--  contraseña-->
+    <!--  contraseña  -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,12 +75,14 @@
         android:hint="Contraseña"
         app:counterEnabled="true"
         app:counterMaxLength="30"
+        app:counterTextColor="@color/violeta_fuerte"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
         app:helperText="Cantidad máxima de caracteres"
         app:helperTextEnabled="true"
-        app:helperTextTextColor="@color/gris"
-        app:hintTextColor="@color/gris">
+        app:helperTextTextColor="@color/violeta_fuerte"
+        app:hintTextColor="@color/violeta_fuerte"
+        app:startIconDrawable="@drawable/key">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -107,7 +109,7 @@
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/violeta_fuerte"
+        android:backgroundTint="@color/violeta_bajo"
         android:text="Registrarme"
         android:textColor="@color/white" />
 

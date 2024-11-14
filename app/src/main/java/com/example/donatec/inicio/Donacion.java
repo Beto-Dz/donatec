@@ -145,4 +145,22 @@ public class Donacion {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    @Override
+    public String toString() {
+        return "Donacion{" +
+                "donationId=" + donationId +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", amount=" + amount +
+                ", measurement='" + measurement + '\'' +
+                ", published_at='" + published_at + '\'' +
+                ", available=" + available +
+                ", state='" + state + '\'' +
+                ", municipality='" + municipality + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

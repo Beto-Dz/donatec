@@ -9,7 +9,7 @@
     app:cardCornerRadius="10dp"
     app:contentPadding="5dp"
     app:strokeWidth=".5dp"
-    tools:context=".ItemListDonacion">
+    tools:context=".inicio.ItemListDonacion">
 
     <LinearLayout
         android:layout_width="match_parent"

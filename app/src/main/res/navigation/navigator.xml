@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_postulaciones" />
     <fragment
         android:id="@+id/donativos"
-        android:name="com.example.donatec.DonativosFragment"
+        android:name="com.example.donatec.inicio.DonativosFragment"
         android:label="fragment_donativos"
         tools:layout="@layout/fragment_donativos" />
     <fragment

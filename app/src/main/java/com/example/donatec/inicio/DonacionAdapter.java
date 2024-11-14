@@ -1,5 +1,6 @@
 package com.example.donatec.inicio;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.donatec.R;
+import com.example.donatec.SessionManager;
 import com.google.android.material.chip.Chip;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +22,13 @@ import java.util.ArrayList;
 public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHolder> {
     // atributo: Lista de donaciones (fuente de datos) que se van a mostrar en el RecyclerView
     ArrayList<Donacion> listaDonaciones;
+    Activity activity;
+    SessionManager sessionManager;
 
     // constructor parametrizado
-    public DonacionAdapter(ArrayList<Donacion> listaDonaciones) {
+    public DonacionAdapter(ArrayList<Donacion> listaDonaciones, Activity activity) {
         this.listaDonaciones = listaDonaciones;
+        this.sessionManager = new SessionManager(activity);
     }
 
     // Método que se llama cuando se necesita crear un nuevo ViewHolder (la "caja" que contendrá cada ítem de la lista)
@@ -57,6 +62,11 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
                 Toast.makeText(v.getContext(), "Usuario: " + listaDonaciones.get(position).getUsername(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        // si el usuario es el mismo que el de la sesión, oculta el botón "postularme"
+        if (this.sessionManager.getUsername().equals(this.listaDonaciones.get(position).getUsername())) {
+            holder.btn_postularme.setVisibility(View.GONE);
+        }
 
         // Listener para el botón "postularme"
         holder.btn_postularme.setOnClickListener(new View.OnClickListener() {

@@ -36,26 +36,23 @@
                 android:layout_height="wrap_content"
                 app:singleLine="true">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/todos"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Todas"
-                    android:textColor="@color/white"
-                    app:checkedIconVisible="true"
-                    app:chipBackgroundColor="@color/violeta_fuerte"
-                    app:chipCornerRadius="20dp"
-                    app:chipStrokeWidth="0dp" />
 
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
     </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <!-- layout de las donaciones   -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_inicio"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </LinearLayout>

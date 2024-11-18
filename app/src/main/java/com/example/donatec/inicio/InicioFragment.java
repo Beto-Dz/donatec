@@ -21,7 +21,6 @@ import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 
-
 public class InicioFragment extends Fragment {
     private ChipGroup chipGroupInicio;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -70,7 +69,7 @@ public class InicioFragment extends Fragment {
         this.donationUtility = new DonationUtility(getActivity(), ListaDonaciones, adapter, requestQueue, sessionManager);
 
         // Llamar al método para obtener la lista de donaciones
-        this.donationUtility.getDonations(getString(R.string.api_base_url) + "donations/" + sessionManager.getStateUser());
+        this.donationUtility.getDonations(getString(R.string.api_base_url) + "donations/" + sessionManager.getStateUser(), false);
 
         // inicializacion de chipUtility
         this.chipUtility = new ChipUtility(getActivity(), chipGroupInicio, requestQueue, sessionManager, donationUtility);
@@ -81,6 +80,13 @@ public class InicioFragment extends Fragment {
             public void onRefresh() {
                 // Acción a realizar al deslizar hacia abajo
                 Toast.makeText(getContext(), chipUtility.getTextChipSelected() + ", actualizando...", Toast.LENGTH_SHORT).show();
+
+                String chipText = chipUtility.getTextChipSelected();
+                String categoryEnpoint = chipText.equals("Todas") ? "" : "/" + chipText;
+                String endpoint = getActivity().getString(R.string.api_base_url) + "donations/" + sessionManager.getStateUser() + categoryEnpoint;
+
+                // Llamar al método para obtener la lista de donaciones
+                donationUtility.getDonations(endpoint, true);
 
                 // Detener la animación de actualización
                 swipeRefreshLayout.setRefreshing(false);

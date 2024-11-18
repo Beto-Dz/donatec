@@ -44,8 +44,12 @@ public class DonationUtility {
     }
 
 
-    public void getDonations(String endpoint) {
+    public void getDonations(String endpoint, boolean refetch) {
         Log.d("endpoint: ", endpoint);
+
+        if(refetch){
+            sessionManager.clearEndpoint(endpoint);
+        }
 
         // obtener informacion para validar si ya se ha hecho la petición al endpoint recibido
         isRequestAlreadyMade = sessionManager.isEndpointVisitado(endpoint);

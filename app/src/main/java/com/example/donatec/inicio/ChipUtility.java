@@ -178,7 +178,7 @@ public class ChipUtility {
                     String categoryEnpoint = category.equals("Todas") ? "" : "/" + category;
                     String endpoint = activity.getString(R.string.api_base_url) + "donations/" + sessionManager.getStateUser() + categoryEnpoint;
                     // Llamar al método para obtener la lista de donaciones por categoria
-                    donationUtility.getDonations(endpoint);
+                    donationUtility.getDonations(endpoint, false);
                     // Desckeckear todos los chips excepto el seleccionado
                     uncheckChips(chip.getId());
                 }

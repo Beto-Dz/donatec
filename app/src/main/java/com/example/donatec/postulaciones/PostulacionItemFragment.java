@@ -1,4 +1,4 @@
-package com.example.donatec;
+package com.example.donatec.postulaciones;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.donatec.R;
 
 public class PostulacionItemFragment extends Fragment {
 

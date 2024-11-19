@@ -86,7 +86,6 @@
                     android:layout_height="wrap_content"
                     app:chipSpacingVertical="1dp">
 
-
                 </com.google.android.material.chip.ChipGroup>
             </ScrollView>
 

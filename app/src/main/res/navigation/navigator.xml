@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/postulaciones"
-        android:name="com.example.donatec.PostulacionesFragment"
+        android:name="com.example.donatec.postulaciones.PostulacionesFragment"
         android:label="fragment_postulaciones"
         tools:layout="@layout/fragment_postulaciones" />
     <fragment

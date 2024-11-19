@@ -1,4 +1,4 @@
-package com.example.donatec;
+package com.example.donatec.postulaciones;
 
 import java.util.Arrays;
 

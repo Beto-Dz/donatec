@@ -1,4 +1,4 @@
-package com.example.donatec;
+package com.example.donatec.postulaciones;
 
 import android.os.Bundle;
 
@@ -16,14 +16,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.donatec.R;
+import com.example.donatec.SessionManager;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PostulacionesFragment extends Fragment {

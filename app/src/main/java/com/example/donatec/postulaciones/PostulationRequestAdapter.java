@@ -1,4 +1,4 @@
-package com.example.donatec;
+package com.example.donatec.postulaciones;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.donatec.inicio.DonacionAdapter;
+import com.example.donatec.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PostulationRequestAdapter extends RecyclerView.Adapter<PostulationRequestAdapter.ViewHolder> {
     // atributos

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    tools:context=".donaciones.FormularioDonativoFragment">
+
+
+    <!--  imagen  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Presiona sobre la imagen para abrir tu camara, preferentemente toma la fotografía horizontalmente"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <!--  titulo  -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Titulo"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:errorEnabled="true"
+        app:helperText="Cantidad máxima de caracteres"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/violeta_fuerte"
+        app:hintTextColor="@color/violeta_fuerte"
+        app:startIconDrawable="@drawable/perfil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:shadowRadius="@integer/material_motion_duration_long_2"
+            android:textColor="@color/violeta_fuerte" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- descripcion    -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Descripción"
+        app:counterEnabled="true"
+        app:counterMaxLength="255"
+        app:errorEnabled="true"
+        app:helperText="Cantidad máxima de caracteres"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/violeta_fuerte"
+        app:hintTextColor="@color/violeta_fuerte"
+        app:startIconDrawable="@drawable/perfil">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:shadowRadius="@integer/material_motion_duration_long_2"
+            android:textColor="@color/violeta_fuerte" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- categoria      -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Categoría"
+        app:helperTextTextColor="@color/violeta_fuerte"
+        app:hintTextColor="@color/violeta_fuerte">
+
+        <AutoCompleteTextView
+            android:id="@+id/categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/violeta_fuerte" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <!--  cantidad  -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:hint="Cantidad"
+            app:hintTextColor="@color/violeta_fuerte">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="number"
+                android:shadowRadius="@integer/material_motion_duration_long_2"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- medida      -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:hint="Medida"
+            app:helperTextTextColor="@color/violeta_fuerte"
+            app:hintTextColor="@color/violeta_fuerte">
+
+            <AutoCompleteTextView
+                android:id="@+id/medida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:inputType="none"
+                android:textColor="@color/violeta_fuerte" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -75,10 +75,7 @@
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="@color/black" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scrollbarSize=".5dp">
+
                 <!--  chip group con orientacion vertical           -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup"
@@ -87,7 +84,7 @@
                     app:chipSpacingVertical="1dp">
 
                 </com.google.android.material.chip.ChipGroup>
-            </ScrollView>
+
 
         </LinearLayout>
 

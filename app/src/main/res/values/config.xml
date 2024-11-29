@@ -2,4 +2,6 @@
 <resources>
         <string name="api_base_url">http://192.168.1.74:8000/api/</string>
         <string name="api_resource">http://192.168.1.74:8000</string>
+<!--        <string name="api_base_url">http://172.16.24.246:8000/api/</string>-->
+<!--        <string name="api_resource">http://172.16.24.246:8000</string>-->
 </resources>

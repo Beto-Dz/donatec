@@ -148,7 +148,7 @@ public class Donacion {
 
     @Override
     public String toString() {
-        return "Donacion{" +
+        return "Donativo{" +
                 "donationId=" + donationId +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +

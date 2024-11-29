@@ -166,7 +166,7 @@ public class UsernameProfileFragment extends Fragment {
                             String municipality = donation.getString("municipality");
                             String usernameDonation = donation.getString("username");
 
-                            // crear una instancia de Donacion
+                            // crear una instancia de Donativo
                             Donacion donacion = new Donacion(donationId, title, category, description, imageUrl, (byte) amount, measurement, published_at, available, state, municipality, usernameDonation);
 
                             // agregar la donacion a la lista de donaciones

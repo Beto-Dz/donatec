@@ -39,9 +39,39 @@ public class UsuarioRegistro {
         setNumeroTelefono(numeroTelefono);
     }
 
+    /**
+     * Constructor parametrizado para actualizar un usuario
+     *
+     * @param nombre
+     * @param apellidoPaterno
+     * @param apellidoMaterno
+     * @param fechaNacimiento
+     * @param sexoID
+     * @param descripcion
+     * @param correo
+     * @param contrasena
+     * @param numeroTelefono
+     */
+    public UsuarioRegistro(String nombre, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, int sexoID, String descripcion, String correo, String contrasena, String numeroTelefono) {
+        setNombre(nombre);
+        setApellidoPaterno(apellidoPaterno);
+        setApellidoMaterno(apellidoMaterno);
+        this.fechaNacimiento = fechaNacimiento;
+        setSexoID(sexoID);
+        setDescripcion(descripcion);
+        setCorreo(correo);
+        this.contrasena = (contrasena.length() >= 8) ? contrasena : null;
+        setNumeroTelefono(numeroTelefono);
+    }
+
     // Método para validar si todos los campos están llenos
     public boolean validarCampos() {
         return nombre != null && apellidoPaterno != null && apellidoMaterno != null && fechaNacimiento != null && municipio != null && estado != null && sexoID != 0 && username != null && descripcion != null && correo != null && contrasena != null && numeroTelefono != null;
+    }
+
+    // validar datos de actualizacion
+    public boolean validarCamposActualizacion() {
+        return nombre != null && apellidoPaterno != null && apellidoMaterno != null && fechaNacimiento != null && sexoID != 0 && descripcion != null && correo != null && contrasena != null && numeroTelefono != null;
     }
 
     // Método para obtener toda la información en formato JSON
@@ -56,6 +86,25 @@ public class UsuarioRegistro {
             jsonObject.put("state_name", this.estado);
             jsonObject.put("gender_id", this.sexoID);
             jsonObject.put("username", this.username);
+            jsonObject.put("description", this.descripcion);
+            jsonObject.put("email", this.correo);
+            jsonObject.put("password", this.contrasena);
+            jsonObject.put("phone_number", this.numeroTelefono);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    // metodo para obtener la informacion del usuario en formato JSON
+    public JSONObject getUsuarioActJSON() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("name", this.nombre);
+            jsonObject.put("paternal_surname", this.apellidoPaterno);
+            jsonObject.put("maternal_surname", this.apellidoMaterno);
+            jsonObject.put("birthdate", this.fechaNacimiento);
+            jsonObject.put("gender_id", this.sexoID);
             jsonObject.put("description", this.descripcion);
             jsonObject.put("email", this.correo);
             jsonObject.put("password", this.contrasena);
@@ -208,5 +257,23 @@ public class UsuarioRegistro {
     // Método de utilidad para validar los campos de texto
     private String validarCampo(String campo, int minLength, int maxLength) {
         return (campo != null && !campo.isBlank() && campo.length() >= minLength && campo.length() <= maxLength) ? campo : null;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioRegistro{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidoPaterno='" + apellidoPaterno + '\'' +
+                ", apellidoMaterno='" + apellidoMaterno + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", municipio='" + municipio + '\'' +
+                ", estado='" + estado + '\'' +
+                ", sexoID=" + sexoID +
+                ", username='" + username + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", numeroTelefono='" + numeroTelefono + '\'' +
+                '}';
     }
 }

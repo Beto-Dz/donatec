@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,6 +113,14 @@ public class DonationUtility {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(activity, "No se han encontrado donaciones", Toast.LENGTH_SHORT).show();
+
+                            // Verificar si hay información de respuesta de red
+                            if (error.networkResponse != null) {
+                                int statusCode = error.networkResponse.statusCode;
+                                String responseBody = new String(error.networkResponse.data);
+                                Log.e("VolleyError", "Código de estado: " + statusCode);
+                                Log.e("VolleyError", "Respuesta: " + responseBody);
+                            }
                             // si existe un error en la peticion, guarda el endpoint con la lista vacia
                             sessionManager.setEndpointLlamado(endpoint, donacionPorEndpoint);
                             // Notificar al adaptador que los datos han cambiado

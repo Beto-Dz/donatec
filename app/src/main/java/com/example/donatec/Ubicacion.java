@@ -43,11 +43,7 @@ public class Ubicacion {
 
     // metodo para obtener la ubicacion del dispositivo
     public void obtenerUbicacion() {
-        if (isGooglePlayServicesAvailable()) {
-            setupGoogleLocationClient();
-        } else {
             setupLocationManager();
-        }
     }
 
     // metodo para verificar si google play services esta disponible
@@ -90,29 +86,6 @@ public class Ubicacion {
         }
     }
 
-
-    // metodo para configurar el cliente de ubicacion de google
-    private void setupGoogleLocationClient() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.activity);
-
-        if (ActivityCompat.checkSelfPermission(this.activity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Solicitar permisos
-            ActivityCompat.requestPermissions((Activity) this.activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        obtenerMunicipioYEstado(location.getLatitude(), location.getLongitude());
-                    } else {
-
-                        Toast.makeText(this.activity, "No se pudo obtener la ubicación", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this.activity, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
 
     // metodo para configurar el location manager para obtener la ubicacion del dispositivo si no se tiene google play services
     private void setupLocationManager() {

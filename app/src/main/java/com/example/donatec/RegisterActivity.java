@@ -176,12 +176,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    // metodo para verificar si google play services esta disponible
-    private boolean isGooglePlayServicesAvailable() {
-        int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
-        return resultCode == ConnectionResult.SUCCESS;
-    }
-
     private void register() {
         // Aquí se debe realizar la solicitud a la API
         String url = getString(R.string.api_base_url) + "users";
@@ -216,22 +210,13 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        int codigo = 0;
-                        String mensaje = "";
                         // Procesar la respuesta
                         try {
-                            codigo = response.getInt("code");
-                            mensaje = response.getString("message");
-                            // si el codigo de la respuesta es 200
-                            if (codigo == 200) {
-                                Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                finish();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Error en el registro: " + mensaje, Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            Toast.makeText(RegisterActivity.this, "error en la respuesta: " + mensaje, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            finish();
+                        } catch (Exception e) {
+                            Toast.makeText(RegisterActivity.this, "error en el registro...", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {

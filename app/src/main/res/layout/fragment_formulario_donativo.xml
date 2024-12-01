@@ -43,7 +43,7 @@
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/violeta_fuerte"
         app:hintTextColor="@color/violeta_fuerte"
-        app:startIconDrawable="@drawable/perfil">
+        app:startIconDrawable="@drawable/fire">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titulo"
@@ -68,7 +68,7 @@
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/violeta_fuerte"
         app:hintTextColor="@color/violeta_fuerte"
-        app:startIconDrawable="@drawable/perfil">
+        app:startIconDrawable="@drawable/text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descripcion"

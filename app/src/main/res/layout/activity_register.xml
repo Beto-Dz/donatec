@@ -226,7 +226,7 @@
             app:helperTextEnabled="true"
             app:helperTextTextColor="@color/violeta_fuerte"
             app:hintTextColor="@color/violeta_fuerte"
-            app:startIconDrawable="@drawable/hashtag">
+            app:startIconDrawable="@drawable/phone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/numeroTelefonico"

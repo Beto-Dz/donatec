@@ -10,16 +10,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.donatec.R;
 import com.example.donatec.SessionManager;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -98,14 +101,13 @@ public class PostulacionesFragment extends Fragment {
                             for (int j = 0; j < messagesArray.length(); j++) {
                                 messages[j] = messagesArray.getString(j);
                             }
-                            boolean acepted = postulationRequestObject.getBoolean("accepted");
                             String applicant_username = postulationRequestObject.getString("applicant_username");
                             String donorUsername = postulationRequestObject.getString("donor_username");
 
 
                             // Crear una nueva postulación
                             // Crear un objeto PostulationRequest
-                            PostulationRequest postulationRequest = new PostulationRequest(id, title, imageUrl, messages, acepted, applicant_username, donorUsername);
+                            PostulationRequest postulationRequest = new PostulationRequest(id, title, imageUrl, messages, applicant_username, donorUsername);
 
                             Log.d("PostulacionesFragment", postulationRequest.toString());
                             // Añadir la postulación a la lista
@@ -114,14 +116,25 @@ public class PostulacionesFragment extends Fragment {
 
                         // Notificar al adaptador que los datos han cambiado
                         adapter.notifyDataSetChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (JSONException error) {
+                        // Manejar el error
+                        Toast.makeText(getActivity(), "Error al obtener las postulaciones" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
                         // Notificar al adaptador que los datos han cambiado
                         adapter.notifyDataSetChanged();
                     }
                 },
                 error -> {
+                    // Verificar si hay información de respuesta de red
+                    if (error.networkResponse != null) {
+                        int statusCode = error.networkResponse.statusCode;
+                        String responseBody = new String(error.networkResponse.data);
+                        Log.e("VolleyError", "Código de estado: " + statusCode);
+                        Log.e("VolleyError", "Respuesta: " + responseBody);
+                    }else{
+                        // Manejar el error
+                        Toast.makeText(getActivity(), "No tienes postulaciones aún." + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

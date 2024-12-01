@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    tools:context=".RegisterActivity">
+    tools:context=".PerfilFragment">
 
     <!-- nombre de usuario        -->
     <LinearLayout
@@ -231,7 +231,7 @@
                     app:helperTextEnabled="true"
                     app:helperTextTextColor="@color/violeta_fuerte"
                     app:hintTextColor="@color/violeta_fuerte"
-                    app:startIconDrawable="@drawable/hashtag">
+                    app:startIconDrawable="@drawable/phone">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/numeroTelefonico"
@@ -288,6 +288,18 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:tint="@color/white"
+        android:src="@drawable/logout"
+        app:backgroundTint="@color/rojo"
+        app:elevation="6dp"
+        app:fabSize="normal" />
 
 
 </LinearLayout>

@@ -4,9 +4,11 @@ import static android.provider.Settings.System.getString;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -19,6 +21,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ import com.example.donatec.SessionManager;
 import com.example.donatec.inicio.Donacion;
 import com.example.donatec.inicio.DonacionAdapter;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
@@ -69,6 +73,7 @@ public class DonativosAdapter extends RecyclerView.Adapter<DonativosAdapter.View
     private HashMap<String, Integer> medidas, categorias;
     private AlertDialog alertDialog;
     private final IOnDonativoUpdateListener updateListener;
+    private View dialogoSolicitudesVista;
 
 
     // constructor
@@ -318,20 +323,11 @@ public class DonativosAdapter extends RecyclerView.Adapter<DonativosAdapter.View
         holder.btn_solicitudes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // mostrar un diálogo con las solicitudes
-                AlertDialog alertDialog = new MaterialAlertDialogBuilder(v.getContext(), R.style.MaterialAlertDialog)
-                        .setTitle("Solicitudes")
-                        .setMessage("No hay solicitudes")
-                        .setPositiveButton("Aceptar", (dialogInterface, which) -> {
-                            // cerrar el diálogo
-                            dialogInterface.dismiss();
-                        }).create();
 
-                // mostrar el dialogo
-                alertDialog.show();
+                // obtener las solicitudes de la donacion con id x
+                getSolicitudes(donativo.getDonationId(), v.getContext());
             }
         });
-
     }
 
 
@@ -396,6 +392,188 @@ public class DonativosAdapter extends RecyclerView.Adapter<DonativosAdapter.View
         // añadir la petición a la cola
         listaSolicitudes.add(request);
     }
+
+    // metoso para obtener las solicitudes del donativo
+//    public void getSolicitudes(int idDonativo) {
+//        String url = activity.getString(R.string.api_base_url) + "request/" + idDonativo;
+//
+//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+//                response -> {
+//                    try {
+//                        JSONArray data = response.getJSONArray("data");
+//
+//                        // Inflar la vista personalizada del diálogo
+//                        View dialogView = LayoutInflater.from(activity).inflate(R.layout.fragment_item_request, null);
+//                        TextView nombreUsuarioTextView = dialogView.findViewById(R.id.nombre_usuario);
+//                        ChipGroup chipGroup = dialogView.findViewById(R.id.chipGroup);
+//
+//                        for (int i = 0; i < data.length(); i++) {
+//                            JSONObject donacion = data.getJSONObject(i);
+//
+//                            String numeroTelefonitoAplicante = donacion.getString("phone_applicant");
+//                            String nombreUusarioAplicante = donacion.getString("applicant_username");
+//                            // necesito guardar numeroTelefonitoAplicante, nombreUusarioAplicante en una vista
+//                            nombreUsuarioTextView.setText(nombreUusarioAplicante);
+//                            JSONArray mensajes = donacion.getJSONArray("messages");
+//                            for (int j = 0; j < mensajes.length(); j++) {
+//                                String mensaje = (String) mensajes.get(j);
+//
+//                                Chip chip = new Chip(activity);
+//                                // Configurar estilos
+//                                chip.setChipBackgroundColorResource(R.color.violeta_ultra_bajo); // Color de fondo
+//                                chip.setTextColor(activity.getResources().getColor(R.color.white)); // Color del texto
+//                                chip.setChipCornerRadius(20); // Esquinas redondeadas (en píxeles)
+//                                chip.setChipIconResource(R.drawable.message); // Ícono
+//                                chip.setChipIconTintResource(R.color.white); // Color del ícono
+//                                chip.setChipStrokeWidth(0); // Ancho del borde (0 si no hay borde)
+//                                chip.setText(mensaje); // Texto
+//
+//                                // necesito agregarlos en un chipgroup
+//                                chipGroup.addView(chip);
+//                            }
+//
+//                        }
+//
+//                        // mostrar un diálogo con las solicitudes
+//                        AlertDialog alertDialog = new MaterialAlertDialogBuilder(activity, R.style.MaterialAlertDialog)
+//                                .setTitle("Solicitudes")
+//                                .setMessage("No hay solicitudes")
+//                                .setView(dialogView)
+//                                .setPositiveButton("Aceptar", (dialogInterface, which) -> {
+//                                    // cerrar el diálogo
+//                                    dialogInterface.dismiss();
+//                                }).create();
+//
+//                        alertDialog.show();
+//
+//                    } catch (JSONException e) {
+//                        Toast.makeText(activity, "algo ha fallado", Toast.LENGTH_SHORT).show();
+//                    }
+//                },
+//                error -> {
+//                    Toast.makeText(activity, "Error de conexión...", Toast.LENGTH_SHORT).show();
+//                }) {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> headers = new HashMap<>();
+//                // Añadir la cabecera Authorization
+//                headers.put("Authorization", "Bearer " + sessionManager.getAuthToken());
+//                return headers;
+//            }
+//
+//            ;
+//        };
+//
+//        listaSolicitudes.add(request);
+//    }
+
+
+    public void getSolicitudes(int idDonativo, Context context) {
+        // endpoint para obtener las solicitudes de la donacion
+        String url = activity.getString(R.string.api_base_url) + "request/" + idDonativo;
+
+        // peticion
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        // obtener el data
+                        JSONArray data = response.getJSONArray("data");
+
+                        // Inflar la vista principal del diálogo
+                        View dialogView = LayoutInflater.from(context).inflate(R.layout.fragment_item_request_container, null);
+                        // obtiene el LinearLayout
+                        LinearLayout container = dialogView.findViewById(R.id.container);
+
+                        // Iterar sobre los objetos del array "data"
+                        for (int i = 0; i < data.length(); i++) {
+                            // obtener la donacion
+                            JSONObject donacion = data.getJSONObject(i);
+
+                            // Inflar una vista personalizada para cada donación
+                            View solicitudView = LayoutInflater.from(activity).inflate(R.layout.fragment_item_request, container, false);
+
+                            // Obtener referencias de los elementos en la vista inflada
+                            TextView nombreUsuarioTextView = solicitudView.findViewById(R.id.nombre_usuario);
+                            ChipGroup chipGroup = solicitudView.findViewById(R.id.chipGroup);
+                            Button botonContacto = solicitudView.findViewById(R.id.contacto);
+
+                            // Establecer el nombre del usuario
+                            String nombreUusarioAplicante = donacion.getString("applicant_username");
+                            nombreUsuarioTextView.setText(nombreUusarioAplicante);
+
+                            // Añadir mensajes al ChipGroup
+                            JSONArray mensajes = donacion.getJSONArray("messages");
+                            for (int j = 0; j < mensajes.length(); j++) {
+                                // obtiene el mensaje
+                                String mensaje = mensajes.getString(j);
+
+                                // nuevo chip
+                                Chip chip = new Chip(context);
+                                chip.setText(mensaje);
+                                chip.setChipBackgroundColorResource(R.color.violeta_ultra_bajo);
+                                chip.setTextColor(context.getResources().getColor(R.color.white));
+                                chip.setChipCornerRadius(20);
+                                chip.setChipIconResource(R.drawable.message);
+                                chip.setChipIconTintResource(R.color.white);
+                                // Configurar el LayoutParams
+                                ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT, // Ancho
+                                        ViewGroup.LayoutParams.WRAP_CONTENT  // Alto
+                                );
+                                chip.setLayoutParams(layoutParams);
+                                chipGroup.addView(chip);
+                            }
+
+                            // define el telefono
+                            String numeroTelefono = "tel:" + donacion.getString("phone_applicant");
+                            // texto de boton
+                            botonContacto.setText("Contactar a " + nombreUusarioAplicante);
+
+                            // click al boton
+                            botonContacto.setOnClickListener(v -> {
+                                // Crear un Intent para abrir el marcador telefónico
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                // intento para abrir el telefono
+                                intent.setData(Uri.parse(numeroTelefono));
+
+                                // Verificar que exista una app para manejar el Intent antes de ejecutarlo
+                                if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                                    activity.startActivity(intent);
+                                }
+                            });
+
+
+                            // Agregar la vista inflada al contenedor principal
+                            container.addView(solicitudView);
+                        }
+
+                        // Mostrar el diálogo con las vistas dinámicas
+                        AlertDialog alertDialog = new MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog)
+                                .setTitle("Solicitudes")
+                                .setView(dialogView)
+                                .setPositiveButton("Aceptar", (dialogInterface, which) -> dialogInterface.dismiss())
+                                .create();
+
+                        alertDialog.show();
+
+                    } catch (JSONException e) {
+                        Toast.makeText(activity, "Error al procesar datos", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    Toast.makeText(activity, "Error de conexión...", Toast.LENGTH_SHORT).show();
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + sessionManager.getAuthToken());
+                return headers;
+            }
+        };
+
+        listaSolicitudes.add(request);
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // atributos

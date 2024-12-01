@@ -1,7 +1,11 @@
 package com.example.donatec;
 
 import android.annotation.SuppressLint;
+
+import androidx.appcompat.app.AlertDialog;
+
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +31,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
@@ -54,6 +61,8 @@ public class PerfilFragment extends Fragment {
     private String fechaNacimientoString;
     private SessionManager sessionManager;
     private RequestQueue listaPeticiones;
+    private FloatingActionButton buttonFloating;
+    private AlertDialog alertDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -75,6 +84,7 @@ public class PerfilFragment extends Fragment {
         nombreUsuario = vista.findViewById(R.id.nombre_usuario);
         sexo = vista.findViewById(R.id.sexo);
         button = vista.findViewById(R.id.button);
+        buttonFloating = vista.findViewById(R.id.logout);
 
         genderMap = new HashMap<>();
         sessionManager = new SessionManager(getActivity());
@@ -100,6 +110,62 @@ public class PerfilFragment extends Fragment {
         // click para datepicker
         fechaNacimiento.setOnClickListener(v -> mostrarDatePickerDialog());
 
+        // muestra el boton flotante
+        buttonFloating.show();
+
+        buttonFloating.setOnClickListener(v -> {
+            // Navegar a la pantalla de crear donativo
+            alertDialog = new MaterialAlertDialogBuilder(v.getContext(), R.style.MaterialAlertDialog)
+                    .setTitle("Cerrar sesión")
+                    .setMessage("¿Estas seguro de que quieres cerrar sesión de tu cuenta?")
+                    .setCancelable(false)
+                    .setNegativeButton("Cancelar", (dialogInterface, which) -> {
+                        // cerrar el diálogo
+                        dialogInterface.dismiss();
+                    })
+                    .setNeutralButton("Aceptar", null)
+                    .create();
+
+            // mostrar el dialogo
+            alertDialog.show();
+
+            // Configurar el botón "Aceptar" manualmente
+            Button aceptarBtn = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+
+            // evento para el boton aceptar
+            aceptarBtn.setOnClickListener(View -> {
+                Toast.makeText(getActivity(), "Cerrando sesión...", Toast.LENGTH_SHORT).show();
+
+                // crear una peticion al api para cerrar sesion
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, getString(R.string.api_base_url) + "logout", null,
+                        response -> {
+                            // elimina la sesion del usuario
+                            sessionManager.logout();
+                            // inicia la actividad de login
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            // cierra la actividad
+                            getActivity().finish();
+                            return;
+                        },
+                        error -> {
+                            Toast.makeText(getActivity(), "Error en la conexión", Toast.LENGTH_SHORT).show();
+                        }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+                        // Añadir la cabecera Authorization
+                        headers.put("Authorization", "Bearer " + sessionManager.getAuthToken());
+                        return headers;
+                    }
+
+                    ;
+                };
+
+                listaPeticiones.add(request);
+                alertDialog.dismiss(); // Cierra el diálogo manualmente
+            });
+        });
 
         getGenders();
         getUserInformation();

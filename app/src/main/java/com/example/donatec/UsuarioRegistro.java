@@ -145,8 +145,8 @@ public class UsuarioRegistro {
     }
 
     public void setFechaNacimiento(String fechaNacimiento) {
-        // Validar que la fecha no esté vacía y tenga una longitud de 10 caracteres
-        if (fechaNacimiento == null || fechaNacimiento.isBlank() || fechaNacimiento.length() != 10) {
+        // Validar que la fecha no esté vacía
+        if (fechaNacimiento == null || fechaNacimiento.isBlank()) {
             this.fechaNacimiento = null;  // Asignar null si está vacía o no tiene el tamaño correcto
             return;
         }

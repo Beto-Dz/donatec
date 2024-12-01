@@ -271,13 +271,11 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <!-- boton de editar -->
+        <!-- Botón Editar -->
         <Button
             android:id="@+id/button"
             style="@style/Widget.Material3.Button.ElevatedButton"
@@ -285,21 +283,27 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/violeta_fuerte"
             android:text="Editar"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <!-- Botón flotante -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/logout"
+            android:tint="@color/white"
+            app:backgroundTint="@color/rojo"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:tint="@color/white"
-        android:src="@drawable/logout"
-        app:backgroundTint="@color/rojo"
-        app:elevation="6dp"
-        app:fabSize="normal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

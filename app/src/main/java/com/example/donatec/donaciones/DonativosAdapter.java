@@ -550,6 +550,7 @@ public class DonativosAdapter extends RecyclerView.Adapter<DonativosAdapter.View
                         // Mostrar el diálogo con las vistas dinámicas
                         AlertDialog alertDialog = new MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog)
                                 .setTitle("Solicitudes")
+                                .setMessage("Aquí podrás ver los usuarios que han solicitado tu donativo, además, podrás contactarlos.")
                                 .setView(dialogView)
                                 .setPositiveButton("Aceptar", (dialogInterface, which) -> dialogInterface.dismiss())
                                 .create();
@@ -561,7 +562,7 @@ public class DonativosAdapter extends RecyclerView.Adapter<DonativosAdapter.View
                     }
                 },
                 error -> {
-                    Toast.makeText(activity, "Error de conexión...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Aún no hay solicitudes...", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

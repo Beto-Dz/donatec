@@ -5,8 +5,13 @@
     <color name="naranja">#FF9800</color>
     <color name="violeta_fuerte">#7B2CBF</color>
     <color name="violeta_bajo">#C77DFF</color>
+    <color name="violeta_ultra_bajo">#E6C4FF</color>
     <color name="rojo">#FD3333</color>
     <color name="azul">#33A8FD</color>
+    <color name="gris_claro">#969FAF</color>
+    <color name="azul_marino">#2A5D9F</color>
+    <color name="verde_Esmeralda">#008080</color>
+    <color name="gris">#616161</color>
 
 
 </resources>

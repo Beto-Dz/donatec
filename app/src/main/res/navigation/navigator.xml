@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/inicio"
-        android:name="com.example.donatec.IncioFragment"
+        android:name="com.example.donatec.inicio.InicioFragment"
         android:label="fragment_incio"
-        tools:layout="@layout/fragment_incio" />
+        tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/postulaciones"
-        android:name="com.example.donatec.PostulacionesFragment"
+        android:name="com.example.donatec.postulaciones.PostulacionesFragment"
         android:label="fragment_postulaciones"
         tools:layout="@layout/fragment_postulaciones" />
     <fragment
         android:id="@+id/donativos"
-        android:name="com.example.donatec.DonativosFragment"
+        android:name="com.example.donatec.donaciones.DonativosFragment"
         android:label="fragment_donativos"
         tools:layout="@layout/fragment_donativos" />
     <fragment

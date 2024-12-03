@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    tools:context=".inicio.PostulacionFragment">
+
+    <!--  mensaje  -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Mensaje de postulación"
+        app:counterEnabled="true"
+        app:counterMaxLength="120"
+        app:counterTextColor="@color/violeta_fuerte"
+        app:errorEnabled="true"
+        app:helperText="Cantidad máxima de caracteres"
+        app:helperTextEnabled="true"
+        app:helperTextTextColor="@color/violeta_bajo"
+        app:hintTextColor="@color/violeta_bajo"
+        app:startIconDrawable="@drawable/message">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:shadowRadius="@integer/material_motion_duration_long_2"
+            android:textColor="@color/violeta_fuerte" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</FrameLayout>

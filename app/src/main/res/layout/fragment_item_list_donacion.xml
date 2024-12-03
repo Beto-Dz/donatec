@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="5dp"
+    app:strokeWidth=".5dp"
+    tools:context=".inicio.ItemListDonacion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <!-- titulo        -->
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo de la donación"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <!-- nombre de usuario        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/at"
+                android:tint="@color/azul"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/nombre_usuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Usuario de la donación"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="@color/azul"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!--  fecha publicacion        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/calendar"
+                android:tint="@color/gris_claro"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/fecha_publicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha de publicación"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/gris_claro" />
+
+        </LinearLayout>
+
+
+        <!-- imagen -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imagen"
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:contentDescription="Imagen gráfica del donativo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icono_app"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!--   descripcion         -->
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción de la donación"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ubicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ubicación"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="@color/azul_marino"
+                app:chipCornerRadius="20dp"
+                app:chipIcon="@drawable/map_pin"
+                app:chipIconTint="@color/white"
+                app:chipStrokeWidth="0dp" />
+
+            <!--  chips           -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:chipSpacing="5dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/categoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/verde_Esmeralda"
+                    app:chipCornerRadius="20dp"
+                    app:chipIcon="@drawable/tag"
+                    app:chipIconTint="@color/white"
+                    app:chipStrokeWidth="0dp" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cantidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cantidad: 1 elm"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="@color/gris"
+                    app:chipCornerRadius="20dp"
+                    app:chipIcon="@drawable/hashtag"
+                    app:chipIconTint="@color/white"
+                    app:chipStrokeWidth="0dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_postularme"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Postularme"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/rojo"
+                app:icon="@drawable/donaciones"
+                app:iconTint="@color/white"
+                app:rippleColor="@color/violeta_bajo" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

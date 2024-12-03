@@ -1,5 +1,6 @@
 package com.example.donatec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inicializa el SessionManager
+        SessionManager sessionManager = new SessionManager(this);
+
+        // Verifica si el usuario ha iniciado sesión
+        if (!sessionManager.isLoggedIn()) {
+            // Si no ha iniciado sesión, redirige a LoginActivity
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Termina MainActivity para evitar volver a ella al presionar "atrás"
+            return; // Asegúrate de que no se ejecute el resto de onCreate
+        }
 
         BottomNavigationView menu = findViewById(R.id.menu);
         NavHostFragment principalFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.principalFragment);

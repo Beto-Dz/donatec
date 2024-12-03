@@ -5,21 +5,25 @@
     <item
         android:id="@+id/inicio"
         android:icon="@drawable/inicio"
+        android:iconTint="@color/white"
         android:title="Inicio" />
 
     <item
         android:id="@+id/postulaciones"
         android:icon="@drawable/postulaciones"
+        android:iconTint="@color/white"
         android:title="Postulaciones" />
 
     <item
         android:id="@+id/donativos"
         android:icon="@drawable/donaciones"
+        android:iconTint="@color/white"
         android:title="Donativos" />
 
     <item
         android:id="@+id/perfil"
         android:icon="@drawable/perfil"
+        android:iconTint="@color/white"
         android:title="Perfil" />
 
 </menu>

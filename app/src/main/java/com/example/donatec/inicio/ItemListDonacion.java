@@ -1,4 +1,4 @@
-package com.example.donatec;
+package com.example.donatec.inicio;
 
 import android.os.Bundle;
 
@@ -8,11 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PostulacionesFragment extends Fragment {
+import com.example.donatec.R;
+
+
+public class ItemListDonacion extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_postulaciones, container, false);
+        return inflater.inflate(R.layout.fragment_item_list_donacion, container, false);
     }
 }
